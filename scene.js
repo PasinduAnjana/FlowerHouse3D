@@ -8,7 +8,7 @@ export function initScene() {
     camera.position.z = 6;
     camera.position.y=3;
 
-    scene.background=new THREE.Color('white')
+    scene.background=new THREE.Color('lightblue')
 
     const cube = createCube();
     cube.position.x=1;
@@ -20,12 +20,12 @@ export function initScene() {
 
 
     // Add ambient light
-    const ambientLight = new THREE.AmbientLight(0x404040,60); // Choose a color for the ambient light
+    const ambientLight = new THREE.AmbientLight(0x404040,40); // Choose a color for the ambient light
     scene.add(ambientLight);
 
     //Add directional light
-    const dirLight= new THREE.DirectionalLight('white',2)
-    dirLight.position.set(5,5,5)
+    const dirLight= new THREE.DirectionalLight('white',4)
+    dirLight.position.set(5,5,3)
     scene.add(dirLight)
 
     
@@ -42,7 +42,7 @@ export function animate(renderer, scene, camera) {
         //scene.getObjectByName('myCube').rotation.x += 0.01;
 
         if(scene.getObjectByName('myHouse')){
-            scene.getObjectByName('myHouse').rotation.y += 0.01;
+           // scene.getObjectByName('myHouse').rotation.y += 0.01;
         }
         
 
