@@ -18,10 +18,12 @@ const sizes={
 function main(){
   
 
-  const renderer = new THREE.WebGLRenderer();
+  const renderer = new THREE.WebGLRenderer({antialias:true});
+
 
   renderer.setSize( window.innerWidth, window.innerHeight );
   document.body.appendChild( renderer.domElement );
+  renderer.pixelRatio=2;
 
   const camera=scene.camera;
 

@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { createCube, importGLB } from './3dObjects';
+import { createCube, createHighlightSquare, createPlane, importGLB } from './3dObjects';
 
 
 export function initScene() {
@@ -28,7 +28,38 @@ export function initScene() {
     dirLight.position.set(5,5,3)
     scene.add(dirLight)
 
-    
+    //add ground
+    const ground= createPlane();
+    ground.rotation.x=-Math.PI/2
+    scene.add(ground);
+
+    const grid=new THREE.GridHelper(20,20);
+    scene.add(grid);
+
+    const highlight=createHighlightSquare();
+    highlight.rotation.x=-Math.PI/2;
+    highlight.position.set(.5,0.01,.5)
+    scene.add(highlight);
+
+
+    //add raycast
+    const mousePosition=new THREE.Vector2();
+    const raycaster=new THREE.Raycaster();
+    let intersects;
+
+    window.addEventListener('mousemove',function(e){
+        mousePosition.x=(e.clientX/this.window.innerWidth)*2-1;
+        mousePosition.y=-(e.clientY/this.window.innerHeight)*2+1;
+        raycaster.setFromCamera(mousePosition,camera);
+        intersects=raycaster.intersectObjects(scene.children);
+        intersects.forEach(function(intersect){
+            if(intersect.object.name==="ground"){
+            const highlightpos=new THREE.Vector3().copy(intersect.point).floor().addScalar(.5);
+            highlight.position.set(highlightpos.x,.01,highlightpos.z);
+        }
+        });
+        
+    });
 
     return { scene, camera };
 }
