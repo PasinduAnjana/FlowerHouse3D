@@ -1,6 +1,7 @@
 import * as THREE from 'three';
-import { createCube, createHighlightSquare, createPlane, importGLB } from './3dObjects';
+import { createCube, createHighlightSquare, createPlane, createSphere, importCrop1, importGLB } from './3dObjects';
 
+let crop1;
 
 export function initScene() {
     const scene = new THREE.Scene();
@@ -16,6 +17,11 @@ export function initScene() {
 
     importGLB((house)=>{
         scene.add(house);
+    })
+
+    importCrop1((crop)=>{
+        crop.position.x=3;
+        crop1=crop;
     })
 
 
@@ -34,7 +40,7 @@ export function initScene() {
     scene.add(ground);
 
     const grid=new THREE.GridHelper(20,20);
-    scene.add(grid);
+    //scene.add(grid);
 
     const highlight=createHighlightSquare();
     highlight.rotation.x=-Math.PI/2;
@@ -47,6 +53,7 @@ export function initScene() {
     const raycaster=new THREE.Raycaster();
     let intersects;
 
+    //highlight the mouse over square
     window.addEventListener('mousemove',function(e){
         mousePosition.x=(e.clientX/this.window.innerWidth)*2-1;
         mousePosition.y=-(e.clientY/this.window.innerHeight)*2+1;
@@ -56,9 +63,44 @@ export function initScene() {
             if(intersect.object.name==="ground"){
             const highlightpos=new THREE.Vector3().copy(intersect.point).floor().addScalar(.5);
             highlight.position.set(highlightpos.x,.01,highlightpos.z);
+
+            const cloneExist=clonedObjs.find(function(object){
+                return(object.position.x===highlight.position.x)&&
+                (object.position.z===highlight.position.z);
+            });
+
+            if(cloneExist){
+                highlight.material.color.set('red');
+            }
+            else{
+                highlight.material.color.set('green');
+            }
+        }
+        });   
+    });
+
+    const clonedObjs=[];
+
+    //add object on click
+    window.addEventListener('mousedown',function(){
+
+        const cloneExist=clonedObjs.find(function(object){
+            return(object.position.x===highlight.position.x)&&
+            (object.position.z===highlight.position.z)
+        })
+        if(!cloneExist){
+            intersects.forEach(function(intersect){
+            if(intersect.object.name==="ground"){
+            const sphereClone=crop1.clone();
+            sphereClone.position.copy(highlight.position);
+            scene.add(sphereClone);
+            clonedObjs.push(sphereClone);
+
+            
         }
         });
-        
+        }
+           console.log(clonedObjs.length);
     });
 
     return { scene, camera };
