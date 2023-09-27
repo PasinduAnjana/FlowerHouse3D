@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { createCube, createHighlightSquare, createPlane, createSphere, importCrop1, importGLB } from './3dObjects';
 
 let crop1;
+let ranRot=Math.PI/2;
 
 export function initScene() {
     const scene = new THREE.Scene();
@@ -80,27 +81,32 @@ export function initScene() {
     });
 
     const clonedObjs=[];
+    const reservedSlots=[{x1:1.5,x2:-1.5,z1:1.5,z2:-1.5}];
 
     //add object on click
     window.addEventListener('mousedown',function(){
 
         const cloneExist=clonedObjs.find(function(object){
+            console.log(object.position.z);
             return(object.position.x===highlight.position.x)&&
-            (object.position.z===highlight.position.z)
+            (object.position.z===highlight.position.z) 
+
         })
         if(!cloneExist){
             intersects.forEach(function(intersect){
             if(intersect.object.name==="ground"){
             const sphereClone=crop1.clone();
             sphereClone.position.copy(highlight.position);
+            sphereClone.rotation.y=ranRot;
             scene.add(sphereClone);
+            ranRot+=Math.PI/2;
             clonedObjs.push(sphereClone);
 
             
         }
         });
         }
-           console.log(clonedObjs.length);
+           //console.log(clonedObjs);
     });
 
     return { scene, camera };
