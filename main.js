@@ -6,7 +6,10 @@ import { animate, initScene } from './scene';
 import { importGLB } from './3dObjects';
 
 
+
+
 const scene=initScene();
+
 
 //screen size
 const sizes={

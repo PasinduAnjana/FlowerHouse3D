@@ -30,3 +30,18 @@ body,html{
   font-size: x-large;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+#clearBtn{
+  position: absolute;
+  top: 50px;
+  left: 10px;
+  text-align: center;
+  border: none;
+  background-color: red;
+  font-size:medium;
+  color: wheat;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: bold;
+
+}
+

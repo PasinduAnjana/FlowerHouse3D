@@ -14,7 +14,6 @@ importCrop1((crop)=>{
 })
 
 
-
 export function spawnOnClick(highlight,scene,clonedObjs){
     const sphereClone=crop1.clone();
           sphereClone.position.copy(highlight.position);
@@ -29,4 +28,21 @@ export function spawnOnClick(highlight,scene,clonedObjs){
           clonedObjs.push(sphereClone);
           cropCount=clonedObjs.length;
           cropCountElement.innerHTML=cropCount;
+}
+
+
+export function clearObjects(scene,clonedObjs){
+  // Iterate through all objects in the scene
+  clonedObjs.forEach(function (crop) {
+    if (crop.children[0] instanceof THREE.Mesh) {
+
+      scene.remove(crop);  
+      crop.children[0].geometry.dispose(); 
+      crop.children[0].material.dispose();
+
+    }
+  });
+
+  clonedObjs.length=0;
+  cropCountElement.innerHTML=0;
 }

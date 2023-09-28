@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { createCube, createHighlightSquare, createPlane, createSphere, importCrop1, importGLB } from './3dObjects';
 
-import { spawnOnClick } from './gamelogic';
+import {  clearObjects, spawnOnClick } from './gamelogic';
 
 
 export function setupRaycasting(scene, camera, highlight) {
@@ -10,6 +10,14 @@ export function setupRaycasting(scene, camera, highlight) {
 
     let intersects;
     const clonedObjs=[];
+
+    var ClearBtn = document.getElementById("clearBtn");
+
+    ClearBtn.addEventListener('click',()=>{
+       clearObjects(scene,clonedObjs)
+    } );
+
+
 
 
     //instanceOnGrid(mousePosition,raycaster,scene, camera, highlight, clonedObjs);
@@ -77,5 +85,20 @@ export function setupRaycasting(scene, camera, highlight) {
 
     
     // Add your other event listeners and functions here as needed
+    //console.log(clonedObjs);
 
+    // function clearObjects(scene){
+    //     clonedObjs.traverse(crop =>{
+    //       if(crop instanceof THREE.Mesh){
+    //         scene.remove(object);
+    //         crop.geometry.dispose();
+    //         crop.material.dispose();    
+    //       }
+    //     }) 
+    //   }
+
+
+
+    
 }
+
