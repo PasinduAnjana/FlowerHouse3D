@@ -4,14 +4,16 @@ import { gsap } from 'gsap';
 
 let ranRot=Math.PI/2;
 let crop1;
-
-
+let cropCount=0;
+var cropCountElement=document.getElementById("count");
 
 importCrop1((crop)=>{
     crop.position.x=3;
     crop1=crop;
-    console.log(crop1);
+    //console.log(crop1);
 })
+
+
 
 export function spawnOnClick(highlight,scene,clonedObjs){
     const sphereClone=crop1.clone();
@@ -25,4 +27,6 @@ export function spawnOnClick(highlight,scene,clonedObjs){
           })
           ranRot+=Math.PI/2;
           clonedObjs.push(sphereClone);
+          cropCount=clonedObjs.length;
+          cropCountElement.innerHTML=cropCount;
 }

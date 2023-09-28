@@ -47,10 +47,9 @@ export function initScene() {
     scene.add(highlight);
 
 
-        
-    const clonedObjs=[];
 
-    setupRaycasting(scene, camera, highlight, clonedObjs);
+
+    setupRaycasting(scene, camera, highlight);
 
     return { scene, camera };
 }

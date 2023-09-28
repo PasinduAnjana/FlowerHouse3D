@@ -18,3 +18,15 @@ body,html{
   font-size: x-large;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+#score{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  text-align: center;
+  display: block;
+  /* z-index: 100; */
+  color: black;
+  font-size: x-large;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

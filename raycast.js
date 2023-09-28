@@ -4,11 +4,12 @@ import { createCube, createHighlightSquare, createPlane, createSphere, importCro
 import { spawnOnClick } from './gamelogic';
 
 
-export function setupRaycasting(scene, camera, highlight, clonedObjs) {
+export function setupRaycasting(scene, camera, highlight) {
     const mousePosition = new THREE.Vector2();
     const raycaster = new THREE.Raycaster();
 
     let intersects;
+    const clonedObjs=[];
 
 
     //instanceOnGrid(mousePosition,raycaster,scene, camera, highlight, clonedObjs);
@@ -55,7 +56,7 @@ export function setupRaycasting(scene, camera, highlight, clonedObjs) {
         if(!cloneExist){
             //intersects.forEach(function(intersect){
             //if(intersect.object.name==="ground"){
-            console.log(intersects.length);
+            //console.log(intersects.length);
             if(intersects[0]){
               if((intersects[0].object.name ==="ground")){
                 spawnOnClick(highlight,scene,clonedObjs);
