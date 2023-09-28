@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { createCube, createHighlightSquare, createPlane, createSphere, importCrop1, importGLB } from './3dObjects';
+import { gsap } from 'gsap';
 
 let crop1;
 let ranRot=Math.PI/2;
@@ -102,26 +103,30 @@ export function initScene() {
             console.log(intersects.length);
             if(intersects[0]){
               if((intersects[0].object.name ==="ground")){
-                const sphereClone=crop1.clone();
-                sphereClone.position.copy(highlight.position);
-                sphereClone.rotation.y=ranRot;
-                scene.add(sphereClone);
-                ranRot+=Math.PI/2;
-                clonedObjs.push(sphereClone);
+                spawnOnClick();
                 }  
             }
             if(intersects[1]){
                 if((intersects[1].object.name ==="ground")){
-                  const sphereClone=crop1.clone();
-                  sphereClone.position.copy(highlight.position);
-                  sphereClone.rotation.y=ranRot;
-                  scene.add(sphereClone);
-                  ranRot+=Math.PI/2;
-                  clonedObjs.push(sphereClone);
+                    spawnOnClick();
                   }  
               }
             
         //});
+        }
+
+        function spawnOnClick(){
+            const sphereClone=crop1.clone();
+                  sphereClone.position.copy(highlight.position);
+                  sphereClone.rotation.y=ranRot;
+                  sphereClone.scale.set(.1,.1,.1)
+                  scene.add(sphereClone);
+                  gsap.to(sphereClone.scale,{
+                    x:.5,y:.5,z:.5,
+                    duration:.3
+                  })
+                  ranRot+=Math.PI/2;
+                  clonedObjs.push(sphereClone);
         }
            //console.log(clonedObjs);
     });
