@@ -13,8 +13,10 @@ export function initScene() {
     scene.background=new THREE.Color('lightblue')
 
     const cube = createCube();
-    cube.position.x=1;
-    //scene.add(cube);
+    cube.position.x=0;
+    cube.scale.set(2,.2,4)
+    scene.add(cube);
+    cube.visible=false
 
     importGLB((house)=>{
         scene.add(house);
