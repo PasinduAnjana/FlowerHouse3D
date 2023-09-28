@@ -37,7 +37,7 @@ export function initScene() {
 
     //add ground
     const ground= createPlane();
-    ground.rotation.x=-Math.PI/2
+    ground.rotation.x=Math.PI/2
     scene.add(ground);
 
     const grid=new THREE.GridHelper(20,20);
@@ -60,9 +60,11 @@ export function initScene() {
         mousePosition.y=-(e.clientY/this.window.innerHeight)*2+1;
         raycaster.setFromCamera(mousePosition,camera);
         intersects=raycaster.intersectObjects(scene.children);
-        intersects.forEach(function(intersect){
-            if(intersect.object.name==="ground"){
-            const highlightpos=new THREE.Vector3().copy(intersect.point).floor().addScalar(.5);
+        //intersects.forEach(function(intersect){
+            if(intersects[0]){
+                if(intersects[0].object.name ==="ground"){
+            //if(intersect.object.name==="ground"){
+            const highlightpos=new THREE.Vector3().copy(intersects[0].point).floor().addScalar(.5);
             highlight.position.set(highlightpos.x,.01,highlightpos.z);
 
             const cloneExist=clonedObjs.find(function(object){
@@ -77,7 +79,7 @@ export function initScene() {
                 highlight.material.color.set('green');
             }
         }
-        });   
+        };   
     });
 
     const clonedObjs=[];
@@ -87,24 +89,37 @@ export function initScene() {
     window.addEventListener('mousedown',function(){
 
         const cloneExist=clonedObjs.find(function(object){
-            console.log(object.position.z);
+            //console.log(object.position.z);
             return(object.position.x===highlight.position.x)&&
             (object.position.z===highlight.position.z) 
 
         })
         if(!cloneExist){
-            intersects.forEach(function(intersect){
-            if(intersect.object.name==="ground"){
-            const sphereClone=crop1.clone();
-            sphereClone.position.copy(highlight.position);
-            sphereClone.rotation.y=ranRot;
-            scene.add(sphereClone);
-            ranRot+=Math.PI/2;
-            clonedObjs.push(sphereClone);
-
+            //intersects.forEach(function(intersect){
+            //if(intersect.object.name==="ground"){
+            console.log(intersects.length);
+            if(intersects[0]){
+              if((intersects[0].object.name ==="ground")){
+                const sphereClone=crop1.clone();
+                sphereClone.position.copy(highlight.position);
+                sphereClone.rotation.y=ranRot;
+                scene.add(sphereClone);
+                ranRot+=Math.PI/2;
+                clonedObjs.push(sphereClone);
+                }  
+            }
+            if(intersects[1]){
+                if((intersects[1].object.name ==="ground")){
+                  const sphereClone=crop1.clone();
+                  sphereClone.position.copy(highlight.position);
+                  sphereClone.rotation.y=ranRot;
+                  scene.add(sphereClone);
+                  ranRot+=Math.PI/2;
+                  clonedObjs.push(sphereClone);
+                  }  
+              }
             
-        }
-        });
+        //});
         }
            //console.log(clonedObjs);
     });
