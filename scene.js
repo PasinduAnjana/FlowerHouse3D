@@ -3,8 +3,7 @@ import { createCube, createHighlightSquare, createPlane, createSphere, importCro
 import { gsap } from 'gsap';
 import { setupRaycasting } from './raycast';
 
-let crop1;
-let ranRot=Math.PI/2;
+
 
 export function initScene() {
     const scene = new THREE.Scene();
@@ -24,9 +23,6 @@ export function initScene() {
         scene.add(house);
     })
 
-
-
-    console.log(crop1);
 
     // Add ambient light
     const ambientLight = new THREE.AmbientLight(0x404040,40); // Choose a color for the ambient light
