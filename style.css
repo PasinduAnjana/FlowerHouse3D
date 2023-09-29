@@ -42,6 +42,25 @@ body,html{
   padding: 10px;
   border-radius: 8px;
   font-weight: bold;
+}
 
+#cropSel,#flowerSel{
+  position: absolute;
+  left: 10px;
+  text-align: center;
+  border: none;
+  background-color: blue;
+  font-size:medium;
+  color: wheat;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+#cropSel{
+  top: 100px;
+}
+#flowerSel{
+  top: 150px;
 }
 
