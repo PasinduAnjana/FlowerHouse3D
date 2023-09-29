@@ -1,9 +1,9 @@
 import * as THREE from 'three';
-import { createCube, createHighlightSquare, createPlane, createSphere, importCrop1, importGLB } from './3dObjects';
+import { createCube, createHighlightSquare, createPlane, importGLB } from './3dObjects';
 import { gsap } from 'gsap';
 import { setupRaycasting } from './raycast';
 
-
+const mixers=[];
 
 export function initScene() {
     const scene = new THREE.Scene();
@@ -11,7 +11,9 @@ export function initScene() {
     camera.position.z = 6;
     camera.position.y=3;
 
-    scene.background=new THREE.Color('lightblue')
+    scene.background=new THREE.Color('lightblue');
+
+    
 
     const cube = createCube();
     cube.position.x=0;
@@ -22,6 +24,8 @@ export function initScene() {
     importGLB((house)=>{
         scene.add(house);
     })
+
+
 
 
     // Add ambient light
@@ -48,24 +52,30 @@ export function initScene() {
 
 
 
-
-    setupRaycasting(scene, camera, highlight);
+    setupRaycasting(scene, camera, highlight,mixers);
 
     return { scene, camera };
 }
 
 
 
+const clock=new THREE.Clock();
+
 export function animate(renderer, scene, camera) {
     function animateLoop() {
         requestAnimationFrame(animateLoop);
+        const delta=clock.getDelta();
 
         //scene.getObjectByName('myCube').rotation.x += 0.01;
 
         if(scene.getObjectByName('myHouse')){
            // scene.getObjectByName('myHouse').rotation.y += 0.01;
         }
-        
+
+        //if(mixer) mixer.update(clock.getDelta());
+        mixers.forEach(function(mixer) {
+            mixer.update(delta/2);
+        })
 
 
         renderer.render(scene, camera);

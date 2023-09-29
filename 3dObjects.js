@@ -23,15 +23,34 @@ export function importCrop1(callback){
     //load crop1 glb
     loader.load( 'public/crop1.glb', function ( gltf ) {
         const crop1=gltf.scene;
+        const animations=gltf.animations;
         crop1.scale.set(.5,.5,.5);
         crop1.name = 'crop1';
 
 
         if (typeof callback === 'function') {
-                    callback(crop1);
+                    callback(crop1,animations);
                 }
 });
 }
+//import flower function
+export function importFlower1(callback){
+    const loader = new GLTFLoader();
+
+    //load crop1 glb
+    loader.load( 'public/flower.glb', function ( gltf ) {
+        const model=gltf.scene;
+        const animations=gltf.animations;
+        model.scale.set(.2,.2,.2);
+        model.name = 'flower1';
+
+        if (typeof callback === 'function') {
+                    callback(model,animations);
+                }
+});
+}
+
+
 
 export function createPlane(){
     const planeMesh=new THREE.Mesh(

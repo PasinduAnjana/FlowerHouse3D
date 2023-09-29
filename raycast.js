@@ -4,12 +4,13 @@ import { createCube, createHighlightSquare, createPlane, createSphere, importCro
 import {  clearObjects, spawnOnClick } from './gamelogic';
 
 
-export function setupRaycasting(scene, camera, highlight) {
+export function setupRaycasting(scene, camera, highlight,mixers) {
     const mousePosition = new THREE.Vector2();
     const raycaster = new THREE.Raycaster();
 
     let intersects;
     const clonedObjs=[];
+    
 
     var ClearBtn = document.getElementById("clearBtn");
 
@@ -67,12 +68,13 @@ export function setupRaycasting(scene, camera, highlight) {
             //console.log(intersects.length);
             if(intersects[0]){
               if((intersects[0].object.name ==="ground")){
-                spawnOnClick(highlight,scene,clonedObjs);
+                spawnOnClick(highlight,scene,clonedObjs,mixers);
                 }  
             }
             if(intersects[1]){
                 if((intersects[1].object.name ==="ground")){
-                    spawnOnClick(highlight,scene,clonedObjs);
+
+                    spawnOnClick(highlight,scene,clonedObjs,mixers);
                   }  
               }
             
@@ -83,22 +85,7 @@ export function setupRaycasting(scene, camera, highlight) {
            //console.log(clonedObjs);
     });
 
-    
-    // Add your other event listeners and functions here as needed
-    //console.log(clonedObjs);
-
-    // function clearObjects(scene){
-    //     clonedObjs.traverse(crop =>{
-    //       if(crop instanceof THREE.Mesh){
-    //         scene.remove(object);
-    //         crop.geometry.dispose();
-    //         crop.material.dispose();    
-    //       }
-    //     }) 
-    //   }
 
 
-
-    
 }
 
