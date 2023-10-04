@@ -49,7 +49,7 @@ body,html{
   left: 10px;
   text-align: center;
   border: none;
-  background-color: blue;
+  background-color: green;
   font-size:medium;
   color: wheat;
   padding: 10px;
@@ -58,9 +58,11 @@ body,html{
 }
 
 #cropSel{
+  background-color: green;
   top: 100px;
 }
 #flowerSel{
+  background-color: pink;
   top: 150px;
 }
 
