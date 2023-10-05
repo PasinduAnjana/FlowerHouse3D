@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 import * as SkeletonUtils from 'three/examples/jsm/utils/SkeletonUtils';
 
 
+let money=100;
 
 let ranRot=0;
 let crop1;
@@ -13,7 +14,9 @@ let flower1ani;
 let crop1Ani;
 let cropCount=0;
 var cropCountElement=document.getElementById("count");
+var flowerCountElement=document.getElementById("flowerCount")
 let activeCrop;
+
 
 
 var CropBtn = document.getElementById("cropSel");
@@ -49,7 +52,7 @@ function clicFlower(){
 }
 
 
-export function spawnOnClick(highlight,scene,clonedObjs,mixers){
+export function spawnOnClick(highlight,scene,clonedObjs,mixers,crops,flowers){
 
   if(!activeCrop){
     clicCrop();
@@ -78,35 +81,46 @@ export function spawnOnClick(highlight,scene,clonedObjs,mixers){
           })
           //ranRot+=Math.PI/2;
           clonedObjs.push(sphereClone);
+
+          if(sphereClone.name === "crop1"){
+            crops.push(sphereClone);
+          }
+          else if(sphereClone.name === "flower1"){
+            flowers.push(sphereClone);
+          }
+
           cropCount=clonedObjs.length;
-          cropCountElement.innerHTML=cropCount;
+          cropCountElement.innerHTML=crops.length;
+          flowerCountElement.innerHTML=flowers.length;
 }
 
 
-export function clearObjects(scene,clonedObjs){
+export function clearObjects(scene,clonedObjs,crops,flowers){
   // Iterate through all objects in the scene
   clonedObjs.forEach(function (crop) {
     
-    console.log(crop.children[0].children[0] instanceof THREE.Mesh);
+    //console.log(crop.children[0].children[0] instanceof THREE.Mesh);
 
 
     if (crop.children[0] instanceof THREE.Mesh) {
-      console.log('fst');
+
       scene.remove(crop);  
       crop.children[0].geometry.dispose(); 
       crop.children[0].material.dispose();
 
     }
     if (crop.children[0].children[0] instanceof THREE.Mesh) {
-      console.log('snd');
+
       scene.remove(crop);  
       crop.children[0].children[0].geometry.dispose(); 
       crop.children[0].children[0].material.dispose();
 
     }
-
   });
 
   clonedObjs.length=0;
+  crops.length=0;
+  flowers.length=0;
   cropCountElement.innerHTML=0;
+  flowerCountElement.innerHTML=0;
 }

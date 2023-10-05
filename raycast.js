@@ -10,12 +10,14 @@ export function setupRaycasting(scene, camera, highlight,mixers) {
 
     let intersects;
     const clonedObjs=[];
+    const flowers=[];
+    const crops=[];
     
 
     var ClearBtn = document.getElementById("clearBtn");
 
     ClearBtn.addEventListener('click',()=>{
-       clearObjects(scene,clonedObjs)
+       clearObjects(scene,clonedObjs,crops,flowers)
     } );
 
 
@@ -68,13 +70,13 @@ export function setupRaycasting(scene, camera, highlight,mixers) {
             //console.log(intersects.length);
             if(intersects[0]){
               if((intersects[0].object.name ==="ground")){
-                spawnOnClick(highlight,scene,clonedObjs,mixers);
+                spawnOnClick(highlight,scene,clonedObjs,mixers,crops,flowers);
                 }  
             }
             if(intersects[1]){
                 if((intersects[1].object.name ==="ground")){
 
-                    spawnOnClick(highlight,scene,clonedObjs,mixers);
+                    spawnOnClick(highlight,scene,clonedObjs,mixers,crops,flowers);
                   }  
               }
             
