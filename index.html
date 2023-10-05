@@ -10,14 +10,44 @@
     <div id="app"></div>
     <script type="module" src="/main.js"></script>
 
-    <div id="info">Three.JS Flower Garden</div>
-    <div id="score">Crops Count: <span id="count">0</span></div>
-    <div id="score1">Flower Count: <span id="flowerCount">0</span></div>
-    <button id="clearBtn">Clear</button>
+    <div id="info">Flower Garden</div>
+    <!-- <div id="score">Crops Count: <span id="count">0</span></div> -->
+    <!-- <div id="score1">Flower Count: <span id="flowerCount">0</span></div> -->
+    <!-- <button id="clearBtn">Clear</button> -->
 
-    <button id="cropSel">Crop</button>
-    <button id="flowerSel">Flower</button>
+    <!-- <button id="cropSel">Crop</button> -->
+    <!-- <button id="flowerSel">Flower</button> -->
 
-    </div>
+
+
+
+<!-- buttons -->
+<div class="button-container">
+  <button id="crop" class="square-button">
+    <img class="icon" src="public/crop.png" alt="Green Icon">
+      <span class="button-text"><span id="cropCount">0</span></span>
+  </button>
+  <button id="flower" class="square-button">
+    <img class="icon" src="public/flower.png" alt="Green Icon">
+      <span class="button-text"><span id="flowerCount">0</span></span>
+  </button>
+  <button id="clearBtn" class="square-button">
+      <img class="icon" src="public/shovel.png" alt="Green Icon">
+      <!-- <span class="button-text">Red</span> -->
+  </button>
+</div>
+ 
+
+<!-- <script>
+  const buttons = document.querySelectorAll('.square-button');
+
+  buttons.forEach(button => {
+      button.addEventListener('click', () => {
+          // Toggle the 'selected' class on click
+          button.classList.toggle('selected');
+      });
+  });
+</script> -->
+
   </body>
 </html>

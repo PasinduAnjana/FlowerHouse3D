@@ -11,7 +11,7 @@ export function initScene() {
     camera.position.z = 6;
     camera.position.y=3;
 
-    scene.background=new THREE.Color('lightblue');
+    scene.background=new THREE.Color('skyblue');
 
     
 

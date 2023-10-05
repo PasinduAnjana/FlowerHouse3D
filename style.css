@@ -13,56 +13,84 @@ body,html{
   width: 100%;
   text-align: center;
   display: block;
-  /* z-index: 100; */
-  color: black;
+  color: white;
   font-size: x-large;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-#score{
+
+
+/* ------------------- */
+
+/* Style the button container */
+.button-container {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column; /* Display buttons vertically */
+}
+
+/* Common styles for square buttons */
+.square-button {
+  width: 70px;
+  height: 70px;
+  border: none;
+  border-radius: 10%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 10px; /* Add spacing between buttons */
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.icon {
+  width: 40px; /* Adjust the width and height as needed */
+  height: 40px;
+}
+
+/* Style the green icon */
+/* #crop .icon {
+  filter: invert(55%) sepia(12%) saturate(1885%) hue-rotate(133deg) brightness(96%) contrast(92%);
+
+
+
+} */
+
+/* Style the pink icon */
+/* #flower .icon {
+  color: hotpink;
+  filter: invert(17%) sepia(83%) saturate(4339%) hue-rotate(325deg) brightness(96%) contrast(114%);
+
+
+/} */
+
+/* Style the red icon */
+/* #clearBtn .icon {
+  color: red;
+} */
+
+/* Style the button text */
+.button-text {
+  color: black; /* Text color is black */
   text-align: center;
-  display: block;
-  /* z-index: 100; */
-  color: black;
-  font-size: x-large;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 14px;
+  font-weight: bold;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-#clearBtn{
-  position: absolute;
-  top: 50px;
-  left: 10px;
-  text-align: center;
-  border: none;
-  background-color: red;
-  font-size:medium;
-  color: wheat;
-  padding: 10px;
-  border-radius: 8px;
-  font-weight: bold;
+
+.square-button:hover {
+  background-color: #ffffff; /* Full white on hover */
+  opacity: 1; /* Make fully opaque on hover */
 }
 
-#cropSel,#flowerSel{
-  position: absolute;
-  left: 10px;
-  text-align: center;
-  border: none;
-  background-color: green;
-  font-size:medium;
-  color: wheat;
-  padding: 10px;
-  border-radius: 8px;
-  font-weight: bold;
+/* Selected effect (you can use a class like .selected-button to apply this) */
+.square-button:active {
+  background-color: #ffffff; /* Full white on hover */
+  opacity: 1; /* Make fully opaque on hover */
 }
-
-#cropSel{
-  background-color: green;
-  top: 100px;
-}
-#flowerSel{
-  background-color: hotpink;
-  top: 150px;
-}
-

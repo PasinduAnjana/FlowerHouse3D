@@ -13,14 +13,14 @@ let activeAni;
 let flower1ani;
 let crop1Ani;
 let cropCount=0;
-var cropCountElement=document.getElementById("count");
+var cropCountElement=document.getElementById("cropCount");
 var flowerCountElement=document.getElementById("flowerCount")
 let activeCrop;
 
 
 
-var CropBtn = document.getElementById("cropSel");
-var FlowerBtn = document.getElementById("flowerSel");
+var CropBtn = document.getElementById("crop");
+var FlowerBtn = document.getElementById("flower");
 
 clicCrop();
 CropBtn.addEventListener('click',clicCrop );
