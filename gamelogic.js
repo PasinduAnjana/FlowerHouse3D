@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { importCrop1, importFlower1 } from './3dObjects';
 import { gsap } from 'gsap';
 import * as SkeletonUtils from 'three/examples/jsm/utils/SkeletonUtils';
+import { selectedButton } from './buttons';
 
 
 let money=100;
@@ -18,14 +19,6 @@ var flowerCountElement=document.getElementById("flowerCount")
 let activeCrop;
 
 
-
-var CropBtn = document.getElementById("crop");
-var FlowerBtn = document.getElementById("flower");
-
-clicCrop();
-CropBtn.addEventListener('click',clicCrop );
-FlowerBtn.addEventListener('click',clicFlower );
-
 importCrop1((crop,animations)=>{
     crop.position.x=3;
     crop1Ani=0;
@@ -41,57 +34,62 @@ importFlower1((flower,animations)=>{
 );
 
 
-function clicCrop(){
-    activeCrop=crop1;
-    activeAni=crop1Ani;
-}
-
-function clicFlower(){
-  activeCrop=flower1;
-    activeAni=flower1ani;
-}
-
 
 export function spawnOnClick(highlight,scene,clonedObjs,mixers,crops,flowers){
 
-  if(!activeCrop){
-    clicCrop();
+  // if(!activeCrop){
+  //   clicCrop();
+  // }
+  if(selectedButton==null){
   }
-    
-    //const sphereClone=crop1.clone();
-    const sphereClone=SkeletonUtils.clone(activeCrop);
-          sphereClone.position.copy(highlight.position);
-          sphereClone.rotation.y=ranRot;
-          sphereClone.scale.set(.1,.1,.1)
-          scene.add(sphereClone);
+  else
+  {
+    console.log('this work');
+    if(selectedButton.id=="crop"){
+      activeCrop=crop1;
+      activeAni=crop1Ani;
+    }
+    else if(selectedButton.id=="flower"){
+      activeCrop=flower1;
+      activeAni=flower1ani;
+    }
 
-          //animation
-          if(activeAni){
-            const mixer=new THREE.AnimationMixer(sphereClone);
-            const clip= mixer.clipAction(activeAni);
-            clip.play();
-            mixers.push(mixer);
-          }
-          
-          
+        //const sphereClone=crop1.clone();
+        const sphereClone=SkeletonUtils.clone(activeCrop);
+        sphereClone.position.copy(highlight.position);
+        sphereClone.rotation.y=ranRot;
+        sphereClone.scale.set(.1,.1,.1)
+        scene.add(sphereClone);
 
-          gsap.to(sphereClone.scale,{
-            x:.5,y:.5,z:.5,
-            duration:.3
-          })
-          //ranRot+=Math.PI/2;
-          clonedObjs.push(sphereClone);
+        //animation
+        if(activeAni){
+          const mixer=new THREE.AnimationMixer(sphereClone);
+          const clip= mixer.clipAction(activeAni);
+          clip.play();
+          mixers.push(mixer);
+        }
+        
+        
 
-          if(sphereClone.name === "crop1"){
-            crops.push(sphereClone);
-          }
-          else if(sphereClone.name === "flower1"){
-            flowers.push(sphereClone);
-          }
+        gsap.to(sphereClone.scale,{
+          x:.5,y:.5,z:.5,
+          duration:.3
+        })
+        //ranRot+=Math.PI/2;
+        clonedObjs.push(sphereClone);
 
-          cropCount=clonedObjs.length;
-          cropCountElement.innerHTML=crops.length;
-          flowerCountElement.innerHTML=flowers.length;
+        if(sphereClone.name === "crop1"){
+          crops.push(sphereClone);
+        }
+        else if(sphereClone.name === "flower1"){
+          flowers.push(sphereClone);
+        }
+
+        cropCount=clonedObjs.length;
+        cropCountElement.innerHTML=crops.length;
+        flowerCountElement.innerHTML=flowers.length;
+  }
+
 }
 
 

@@ -2,8 +2,6 @@ import * as THREE from 'three';
 import { createCube, createHighlightSquare, createPlane, createSphere, importCrop1, importGLB } from './3dObjects';
 
 import {  clearObjects, spawnOnClick } from './gamelogic';
-import { selectedButton } from './buttons';
-
 
 
 
