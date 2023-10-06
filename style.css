@@ -50,26 +50,6 @@ body,html{
   height: 40px;
 }
 
-/* Style the green icon */
-/* #crop .icon {
-  filter: invert(55%) sepia(12%) saturate(1885%) hue-rotate(133deg) brightness(96%) contrast(92%);
-
-
-
-} */
-
-/* Style the pink icon */
-/* #flower .icon {
-  color: hotpink;
-  filter: invert(17%) sepia(83%) saturate(4339%) hue-rotate(325deg) brightness(96%) contrast(114%);
-
-
-/} */
-
-/* Style the red icon */
-/* #clearBtn .icon {
-  color: red;
-} */
 
 /* Style the button text */
 .button-text {
@@ -93,4 +73,36 @@ body,html{
 .square-button.selected {
   background-color: #ffffff; /* Full white on hover */
   opacity: 1; /* Make fully opaque on hover */
+}
+
+
+#coins {
+  width: 200px;
+  height: 80px;
+  border: none;
+  border-radius: 10%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 10px; /* Add spacing between buttons */
+  background-color: rgba(255, 255, 255, 0);
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Center vertically within the div */
+
+}
+
+#coins img.coinIcon {
+
+  height: 80%;
+}
+
+.coin-text {
+  flex-grow: 1; /* Allow the text to grow and take available space */
+  text-align: left; /* Align the text to the right */
+  margin-right: 10px; /* Add some space between the image and text */
+  font-size: xx-large;
+  font-family:fantasy;
+  color: gold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+
 }

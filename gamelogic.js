@@ -5,8 +5,8 @@ import * as SkeletonUtils from 'three/examples/jsm/utils/SkeletonUtils';
 import { selectedButton } from './buttons';
 
 
-let money=100;
-
+let money=100000;
+const cropValue=50;
 let ranRot=0;
 let crop1;
 let flower1;
@@ -16,7 +16,12 @@ let crop1Ani;
 let cropCount=0;
 var cropCountElement=document.getElementById("cropCount");
 var flowerCountElement=document.getElementById("flowerCount")
+var moneyElement=document.querySelector(".coin-text")
 let activeCrop;
+
+export function init(){
+  moneyElement.textContent=money;
+}
 
 
 importCrop1((crop,animations)=>{
@@ -34,17 +39,13 @@ importFlower1((flower,animations)=>{
 );
 
 
-
 export function spawnOnClick(highlight,scene,clonedObjs,mixers,crops,flowers){
 
-  // if(!activeCrop){
-  //   clicCrop();
-  // }
+
   if(selectedButton==null){
   }
-  else
+  else if(money>=cropValue)
   {
-    console.log('this work');
     if(selectedButton.id=="crop"){
       activeCrop=crop1;
       activeAni=crop1Ani;
@@ -88,6 +89,9 @@ export function spawnOnClick(highlight,scene,clonedObjs,mixers,crops,flowers){
         cropCount=clonedObjs.length;
         cropCountElement.innerHTML=crops.length;
         flowerCountElement.innerHTML=flowers.length;
+
+        money-=cropValue;
+        moneyElement.textContent=money;
   }
 
 }
@@ -115,6 +119,9 @@ export function clearObjects(scene,clonedObjs,crops,flowers){
 
     }
   });
+  if(money<100){
+    money+=10000;
+  }
 
   clonedObjs.length=0;
   crops.length=0;

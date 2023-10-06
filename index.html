@@ -13,9 +13,13 @@
     <div id="info">Flower Garden</div>
 
 
-
 <!-- buttons -->
 <div class="button-container">
+  <div id="coins">
+    <img class="coinIcon" src="public/coin.png" alt="Green Icon">
+    <span class="coin-text">00</span>
+  </div>
+
   <button id="crop" class="square-button">
     <img class="icon" src="public/crop.png" alt="Green Icon">
       <span class="button-text"><span id="cropCount">0</span></span>
@@ -30,19 +34,7 @@
   </button>
 </div>
 
-<script src="./buttons.js" type="module"></script>
- 
 
-<!-- <script>
-  const buttons = document.querySelectorAll('.square-button');
-
-  buttons.forEach(button => {
-      button.addEventListener('click', () => {
-          // Toggle the 'selected' class on click
-          button.classList.toggle('selected');
-      });
-  });
-</script> -->
 
   </body>
 </html>

@@ -2,10 +2,14 @@ import * as THREE from 'three';
 import { createCube, createHighlightSquare, createPlane, importGLB } from './3dObjects';
 import { gsap } from 'gsap';
 import { setupRaycasting } from './raycast';
+import { init } from './gamelogic';
 
 const mixers=[];
 
 export function initScene() {
+
+    init();
+
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.z = 6;
