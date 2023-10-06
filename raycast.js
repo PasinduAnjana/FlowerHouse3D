@@ -2,6 +2,9 @@ import * as THREE from 'three';
 import { createCube, createHighlightSquare, createPlane, createSphere, importCrop1, importGLB } from './3dObjects';
 
 import {  clearObjects, spawnOnClick } from './gamelogic';
+import { selectedButton } from './buttons';
+
+
 
 
 export function setupRaycasting(scene, camera, highlight,mixers) {
@@ -12,7 +15,6 @@ export function setupRaycasting(scene, camera, highlight,mixers) {
     const clonedObjs=[];
     const flowers=[];
     const crops=[];
-    
 
     var ClearBtn = document.getElementById("clearBtn");
 

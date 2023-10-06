@@ -90,7 +90,7 @@ body,html{
 }
 
 /* Selected effect (you can use a class like .selected-button to apply this) */
-.square-button:focus {
+.square-button.selected {
   background-color: #ffffff; /* Full white on hover */
   opacity: 1; /* Make fully opaque on hover */
 }
